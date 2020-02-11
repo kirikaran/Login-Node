@@ -65,7 +65,8 @@ errors.push({msg:'Email is already registered'});
               //save user
               newUser.save()
               .then(user=>{
-                  res.redirect('/login');
+                  req.flash('success_msg','you are now registred and can login');
+                  res.redirect('/users/login');
               })
               .catch(err=> console.log(err));
       
