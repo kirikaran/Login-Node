@@ -1,9 +1,22 @@
 const express =require('express');
 const expressLayout=require('express-ejs-layouts');
+const mongoose=require('mongoose');
+
 const app=express();
+
+//DB config
+const db=require('./config/keys').MongoURI;
+
+//Connect to Mango
+mongoose.connect(db,{useNewUrlParser:true})
+.then(()=>console.log('mongoDb connected'))
+.catch(err=>console.log(err));
+
 //EJS
 app.use(expressLayout);
 app.set('view engine','ejs');
+
+
 //routes
 app.use('/',require('./routes/index'));
 app.use('/users',require('./routes/users'));
